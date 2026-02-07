@@ -255,3 +255,77 @@ body {
     resize: vertical;
     font-family: Arial, sans-serif;
 }
+
+.sell-car-container {
+    display: flex;
+    flex-direction: column;
+    width: 700px;
+    margin: 50px auto;
+    padding: 30px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+}
+
+.sell-car-container h1 {
+    font-size: 32px;
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.sell-car-container h2 {
+    font-size: 22px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    color: #333;
+    border-bottom: 2px solid #0056b3;
+    padding-bottom: 10px;
+}
+
+.sell-car-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.sell-car-form .input-field {
+    width: 95%;
+    padding: 10px;
+    border: 1px solid #aaa;
+    font-size: 14px;
+}
+
+.sell-car-form select.input-field {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #aaa;
+    font-size: 14px;
+}
+
+.sell-car-form textarea.input-field {
+    resize: vertical;
+    font-family: Arial, sans-serif;
+}
+
+.photo-upload-section {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.photo-upload-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.photo-upload-item label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+.photo-upload-item input[type="file"] {
+    padding: 8px;
+    border: 1px solid #aaa;
+    background-color: #fff;
+}
