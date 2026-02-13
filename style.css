@@ -500,3 +500,92 @@ body {
 .seller-details {
     margin-top: 10px;
 }
+
+/* Contact page */
+
+.contact-container {
+    display: flex;
+    flex-direction: column;
+    width: 600px;
+    margin: 50px auto;
+    padding: 30px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+}
+
+.contact-container h1 {
+    font-size: 32px;
+    text-align: center;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.contact-intro {
+    text-align: center;
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 30px;
+    line-height: 1.5;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 40px;
+}
+
+.contact-form .input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.contact-form .input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.contact-form .input-field {
+    width: 95%;
+    padding: 10px;
+    border: 1px solid #aaa;
+    font-size: 14px;
+}
+
+.contact-form textarea.input-field {
+    resize: vertical;
+    font-family: Arial, sans-serif;
+}
+
+.contact-form .action-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    padding: 20px;
+    border: 2px solid #0056b3;
+    margin-top: 30px;
+}
+
+.contact-info h2 {
+    font-size: 22px;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.contact-info p {
+    margin: 10px 0;
+    font-size: 15px;
+    color: #555;
+}
