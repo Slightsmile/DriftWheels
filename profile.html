@@ -27,32 +27,35 @@
             <img id="profileImage" src="https://via.placeholder.com/150" alt="Profile Picture">
             <br>
             <input type="file" id="imageUpload" accept="image/*">
+            <p id="imageError" style="color: red; display: none;"></p>
         </div>
 
-        <form class="profile-form">
+        <form class="profile-form" id="profileForm">
             <div class="input-group">
                 <label>Full Name</label>
-                <input type="text" class="input-field" placeholder="Enter your full name">
+                <input type="text" id="fullName" name="fullName" class="input-field" placeholder="Enter your full name" required>
+                <p id="nameError" style="color: red; display: none;"></p>
             </div>
 
             <div class="input-group">
                 <label>Email</label>
-                <input type="email" class="input-field" placeholder="Enter your email">
+                <input type="email" id="email" name="email" class="input-field" placeholder="Enter your email" required>
             </div>
 
             <div class="input-group">
                 <label>Phone Number</label>
-                <input type="tel" class="input-field" placeholder="Enter your phone number">
+                <input type="tel" id="phoneNumber" name="phone" class="input-field" value="+880" placeholder="Enter your phone number" required>
+                <p id="phoneError" style="color: red; display: none;"></p>
             </div>
 
             <div class="input-group">
                 <label>Address</label>
-                <textarea class="input-field" rows="3" placeholder="Enter your address"></textarea>
+                <textarea id="address" name="address" class="input-field" rows="3" placeholder="Enter your address" required></textarea>
             </div>
 
             <div class="input-group">
                 <label>Bio</label>
-                <textarea class="input-field" rows="4" placeholder="Tell us about yourself"></textarea>
+                <textarea id="bio" name="bio" class="input-field" rows="4" placeholder="Tell us about yourself"></textarea>
             </div>
 
             <button type="submit" class="action-btn">Save Profile</button>
@@ -62,6 +65,8 @@
     <div class="footer">
         © 2026 DriftWheels. All rights reserved.
     </div>
+
+    <script src="profile.js"></script>
 
 </body>
 
