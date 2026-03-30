@@ -24,16 +24,18 @@
         <h1>Login to DriftWheels</h1>
 
         <div class="login-box">
-            <form action="#" method="POST">
+            <form id="loginForm" action="#" method="POST">
 
                 <div class="input-group">
                     <label>Email</label>
-                    <input type="email" class="input-field" placeholder="Enter your email">
+                    <input id="loginEmail" type="email" class="input-field" placeholder="Enter your email">
+                    <small id="loginEmailMsg"></small>
                 </div>
 
                 <div class="input-group">
                     <label>Password</label>
-                    <input type="password" class="input-field" placeholder="Enter your password">
+                    <input id="loginPassword" type="password" class="input-field" placeholder="Enter your password">
+                    <small id="loginPasswordMsg"></small>
                 </div>
 
                 <button type="submit" class="action-btn">Login</button>
@@ -49,6 +51,8 @@
     <div class="footer">
         © 2026 DriftWheels
     </div>
+
+    <script src="login.js"></script>
 
 </body>
 

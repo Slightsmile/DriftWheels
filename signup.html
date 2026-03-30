@@ -24,36 +24,41 @@
         <h1>Create a DriftWheels Account</h1>
 
         <div class="signup-form">
-            <form action="#" method="POST">
+            <form id="signupForm" action="#" method="POST">
 
                 <div class="input-group">
                     <label>Full Name</label>
-                    <input type="text" class="input-field">
+                    <input id="signupName" type="text" class="input-field">
+                    <small id="nameMsg"></small>
                 </div>
 
                 <div class="input-group">
                     <label>Email</label>
-                    <input type="email" class="input-field">
+                    <input id="signupEmail" type="email" class="input-field">
+                    <small id="emailMsg"></small>
                 </div>
 
                 <div class="input-group">
                     <label>Phone Number</label>
-                    <input type="text" class="input-field">
+                    <input id="signupPhone" type="text" class="input-field">
+                    <small id="phoneMsg"></small>
                 </div>
 
                 <div class="input-group">
                     <label>Password</label>
-                    <input type="password" class="input-field">
+                    <input id="signupPassword" type="password" class="input-field">
+                    <small id="passwordMsg"></small>
                 </div>
 
                 <div class="input-group">
                     <label>Confirm Password</label>
-                    <input type="password" class="input-field">
+                    <input id="signupConfirmPassword" type="password" class="input-field">
+                    <small id="confirmMsg"></small>
                 </div>
 
                 <div class="input-group">
                     <label>Location</label>
-                    <input type="text" class="input-field">
+                    <input id="signupLocation" type="text" class="input-field">
                 </div>
 
                 <button type="submit" class="action-btn">Sign Up</button>
@@ -69,6 +74,8 @@
     <div class="footer">
         © 2026 DriftWheels
     </div>
+
+    <script src="signup.js"></script>
 
 </body>
 
