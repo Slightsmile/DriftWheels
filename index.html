@@ -30,30 +30,24 @@
         <h2>Featured Cars</h2>
 
         <div class="car-box">
-            <a href="car-view.html?name=Toyota%20Corolla%20X&price=1000000">
-                <div class="image-box">Car Image</div>
-            </a>
+            <div class="image-box">Car Image</div>
             <div class="car-title">Toyota Corolla X</div>
             <span class="price">৳ 1000000</span>
-            <a href="car-view.html?name=Toyota%20Corolla%20X&price=1000000" class="view-btn">View Details</a>
+            <button class="view-btn" onclick="goToCarDetails({name:'Toyota Corolla X',price:'1000000',year:'2020',condition:'Used',mileage:'45000 km',fuel:'Petrol',transmission:'Automatic',color:'White',location:'Dhaka, Bangladesh',description:'This is a well-maintained Toyota Corolla X in excellent condition. The car has been regularly serviced and comes with all original documents. Perfect for daily commute and family use.'})">View Details</button>
         </div>
 
         <div class="car-box">
-            <a href="car-view.html?name=Honda%20Civic%202020&price=2200000">
-                <div class="image-box">Car Image</div>
-            </a>
+            <div class="image-box">Car Image</div>
             <div class="car-title">Honda Civic 2020</div>
             <span class="price">৳ 2200000</span>
-            <a href="car-view.html?name=Honda%20Civic%202020&price=2200000" class="view-btn">View Details</a>
+            <button class="view-btn" onclick="goToCarDetails({name:'Honda Civic 2020',price:'2200000',year:'2020',condition:'Used',mileage:'30000 km',fuel:'Petrol',transmission:'Automatic',color:'Black',location:'Chittagong, Bangladesh',description:'Honda Civic 2020 in great condition. Low mileage, single owner, all papers up to date.'})">View Details</button>
         </div>
 
         <div class="car-box">
-            <a href="car-view.html?name=Toyota%20Esquire&price=3500000">
-                <div class="image-box">Car Image</div>
-            </a>
+            <div class="image-box">Car Image</div>
             <div class="car-title">Toyota Esquire</div>
             <span class="price">৳ 3500000</span>
-            <a href="car-view.html?name=Toyota%20Esquire&price=3500000" class="view-btn">View Details</a>
+            <button class="view-btn" onclick="goToCarDetails({name:'Toyota Esquire',price:'3500000',year:'2021',condition:'New',mileage:'5000 km',fuel:'Hybrid',transmission:'Automatic',color:'Silver',location:'Dhaka, Bangladesh',description:'Brand new Toyota Esquire, imported, hybrid engine, luxury interior.'})">View Details</button>
         </div>
     </div>
 
@@ -74,6 +68,7 @@
     <div class="footer">
         © 2026 DriftWheels. All rights reserved.
     </div>
+    <script src="index.js"></script>
 
 </body>
 
