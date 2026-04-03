@@ -15,8 +15,8 @@
         <div class="menu">
             <a href="index.html"><button>Home</button></a>
             <a href="about-us.html"><button>About Us</button></a>
+            <a href="sell-car.html"><button>Sell Car</button></a>
             <a href="login.html"><button>Login</button></a>
-            <a href="signup.html"><button>Sign Up</button></a>
         </div>
     </div>
 
@@ -29,16 +29,19 @@
             <div class="input-group">
                 <label>Car Title</label>
                 <input type="text" class="input-field" placeholder="e.g. Toyota Corolla X">
+                <div class="field-error" style="color:red;font-size:14px;"></div>
             </div>
 
             <div class="input-group">
                 <label>Price (৳)</label>
                 <input type="number" class="input-field" placeholder="e.g. 1000000">
+                <div class="field-error" style="color:red;font-size:14px;"></div>
             </div>
 
             <div class="input-group">
                 <label>Model Year</label>
                 <input type="number" class="input-field" placeholder="e.g. 2020">
+                <div class="field-error" style="color:red;font-size:14px;"></div>
             </div>
 
             <div class="input-group">
@@ -49,11 +52,13 @@
                     <option value="used">Used</option>
                     <option value="reconditioned">Reconditioned</option>
                 </select>
+                <div class="field-error" style="color:red;font-size:14px;"></div>
             </div>
 
             <div class="input-group">
                 <label>Mileage (km)</label>
                 <input type="number" class="input-field" placeholder="e.g. 45000">
+                <div class="field-error" style="color:red;font-size:14px;"></div>
             </div>
 
             <div class="input-group">
@@ -66,6 +71,7 @@
                     <option value="hybrid">Hybrid</option>
                     <option value="electric">Electric</option>
                 </select>
+                <div class="field-error" style="color:red;font-size:14px;"></div>
             </div>
 
             <div class="input-group">
@@ -75,21 +81,25 @@
                     <option value="manual">Manual</option>
                     <option value="automatic">Automatic</option>
                 </select>
+                <div class="field-error" style="color:red;font-size:14px;"></div>
             </div>
 
             <div class="input-group">
                 <label>Color</label>
                 <input type="text" class="input-field" placeholder="e.g. White">
+                <div class="field-error" style="color:red;font-size:14px;"></div>
             </div>
 
             <div class="input-group">
                 <label>Location</label>
                 <input type="text" class="input-field" placeholder="e.g. Dhaka, Bangladesh">
+                <div class="field-error" style="color:red;font-size:14px;"></div>
             </div>
 
             <div class="input-group">
                 <label>Description</label>
                 <textarea class="input-field" rows="5" placeholder="Describe your car in detail..."></textarea>
+                <div class="field-error" style="color:red;font-size:14px;"></div>
             </div>
 
             <h2>Upload Photos (Maximum 10)</h2>
@@ -142,20 +152,55 @@
             <div class="input-group">
                 <label>Your Name</label>
                 <input type="text" class="input-field" placeholder="Enter your name">
+                <div class="field-error" style="color:red;font-size:14px;"></div>
             </div>
 
             <div class="input-group">
                 <label>Phone Number</label>
                 <input type="tel" class="input-field" placeholder="Enter your phone number">
+                <div class="field-error" style="color:red;font-size:14px;"></div>
             </div>
 
             <button type="submit" class="action-btn">Submit Listing</button>
+                    <div id="error-message" style="color:red;margin-top:10px;"></div>
         </form>
     </div>
 
     <div class="footer">
         © 2026 DriftWheels. All rights reserved.
     </div>
+    <script>
+    document.querySelector('.sell-car-form').onsubmit = function(e) {
+        var fields = document.querySelectorAll('.sell-car-form .input-field');
+        var errors = document.querySelectorAll('.field-error');
+        for(var i=0;i<errors.length;i++) errors[i].textContent = '';
+        var error = '';
+        if(fields[0].value.trim() === '') { errors[0].textContent = 'Car Title is required'; error = '1'; }
+        if(fields[1].value.trim() === '' || isNaN(fields[1].value) || Number(fields[1].value) <= 0) { errors[1].textContent = 'Valid Price is required'; error = '1'; }
+        if(fields[2].value.trim() === '' || isNaN(fields[2].value) || fields[2].value.length !== 4) { errors[2].textContent = 'Valid Model Year is required'; error = '1'; }
+        if(fields[3].value === '') { errors[3].textContent = 'Condition is required'; error = '1'; }
+        if(fields[4].value.trim() === '' || isNaN(fields[4].value) || Number(fields[4].value) < 0) { errors[4].textContent = 'Valid Mileage is required'; error = '1'; }
+        if(fields[5].value === '') { errors[5].textContent = 'Fuel Type is required'; error = '1'; }
+        if(fields[6].value === '') { errors[6].textContent = 'Transmission is required'; error = '1'; }
+        if(fields[7].value.trim() === '') { errors[7].textContent = 'Color is required'; error = '1'; }
+        if(fields[8].value.trim() === '') { errors[8].textContent = 'Location is required'; error = '1'; }
+        if(fields[9].value.trim().length < 10) { errors[9].textContent = 'Description must be at least 10 characters'; error = '1'; }
+        var name = fields[10].value.trim();
+        var phone = fields[11].value.trim();
+        if(name === '') { errors[10].textContent = 'Your Name is required'; error = '1'; }
+        if(phone === '' || !/^\+?\d{10,15}$/.test(phone)) { errors[11].textContent = 'Valid Phone Number is required'; error = '1'; }
+        var files = document.querySelectorAll('.photo-upload-item input[type="file"]');
+        var photoCount = 0;
+        for(var i=0;i<files.length;i++) if(files[i].files.length) photoCount++;
+        if(photoCount === 0) {
+            document.getElementById('error-message').textContent = 'At least 1 photo is required';
+            error = '1';
+        } else {
+            document.getElementById('error-message').textContent = '';
+        }
+        if(error) e.preventDefault();
+    };
+    </script>
 
 </body>
 
