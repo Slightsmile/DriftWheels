@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Login - DriftWheels</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="navbar">
+    <div class="logo">DriftWheels</div>
+    <div class="menu">
+      <a href="index.html"><button>Home</button></a>
+      <a href="about-us.html"><button>About Us</button></a>
+      <a href="sell-car.html"><button>Sell Car</button></a>
+      <a href="login.html"><button>Login</button></a>
+    </div>
+  </div>
+
+  <div class="login-container">
+    <h1>Admin Login</h1>
+    <div class="login-box">
+      <form id="adminLoginForm">
+        <div class="input-group">
+          <label>Username</label>
+          <input type="text" id="adminUser" class="input-field" placeholder="Enter your username">
+        </div>
+        <div class="input-group">
+          <label>Password</label>
+          <input type="password" id="adminPass" class="input-field" placeholder="Enter your password">
+        </div>
+        <button type="submit" class="action-btn">Login</button>
+      </form>
+      <p id="adminLoginMsg"></p>
+    </div>
+  </div>
+
+  <div class="footer">
+    © 2026 DriftWheels
+  </div>
+
+  <script src="admin-login.js"></script>
+
+</body>
+</html>
