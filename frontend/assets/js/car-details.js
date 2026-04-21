@@ -50,7 +50,7 @@ function loadCarDetails() {
         return;
     }
 
-    fetch("../backend/car_details.php?id=" + encodeURIComponent(id))
+    fetch("../backend/car-details.php?id=" + encodeURIComponent(id))
         .then(function (res) { return res.json(); })
         .then(function (data) {
             if (!data.ok || !data.data || !data.data.listing) {

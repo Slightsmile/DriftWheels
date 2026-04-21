@@ -6,15 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DriftWheels</title>
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/timeline.css">
 </head>
 
 <body>
 
     <div class="navbar">
-        <div class="logo">DriftWheels</div>
+        <a class="logo" href="index.php">DriftWheels</a>
         <div class="menu">
             <a href="index.php"><button>Home</button></a>
-            <a href="about-us.php"><button>About Us</button></a>
+            <a href="timeline.php"><button>Browse</button></a>
             <a href="sell-car.php"><button>Sell Car</button></a>
             <a href="login.php"><button>Login</button></a>
         </div>
@@ -28,7 +29,7 @@
 
     <div class="featured">
         <h2>Featured Cars</h2>
-        <div id="featuredCars">Loading cars...</div>
+        <div id="featuredCars" class="timeline-feed">Loading cars...</div>
     </div>
 
     <div class="info-section">

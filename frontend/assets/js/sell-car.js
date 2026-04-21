@@ -124,7 +124,7 @@ if (sellCarForm) {
             return;
         }
 
-        fetch("../backend/sell_car.php", {
+        fetch("../backend/sell-car.php", {
             method: "POST",
             body: formData
         })

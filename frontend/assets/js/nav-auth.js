@@ -7,7 +7,7 @@
         var button = anchor.querySelector("button");
 
         if (isLoggedIn) {
-            anchor.setAttribute("href", "../backend/logout_redirect.php");
+            anchor.setAttribute("href", "../backend/logout-redirect.php");
             if (button) {
                 button.textContent = "Logout";
             } else {
@@ -31,7 +31,22 @@
             var button = link.querySelector("button");
             var text = (button ? button.textContent : link.textContent).trim().toLowerCase();
 
-            if (href.indexOf("login.php") !== -1 || href.indexOf("../backend/logout_redirect.php") !== -1 || text === "login" || text === "logout") {
+            if (href.indexOf("login.php") !== -1 || href.indexOf("../backend/logout-redirect.php") !== -1 || text === "login" || text === "logout") {
+                return link;
+            }
+        }
+        return null;
+    }
+
+    function findSellCarLink(menu) {
+        var links = menu.querySelectorAll("a");
+        for (var i = 0; i < links.length; i++) {
+            var link = links[i];
+            var href = (link.getAttribute("href") || "").toLowerCase();
+            var button = link.querySelector("button");
+            var text = (button ? button.textContent : link.textContent).trim().toLowerCase();
+
+            if (href.indexOf("sell-car.php") !== -1 || text === "sell car") {
                 return link;
             }
         }
@@ -41,8 +56,15 @@
     function updateMenus(isLoggedIn) {
         var menus = document.querySelectorAll(".menu");
         for (var i = 0; i < menus.length; i++) {
-            var loginLink = findLoginLikeLink(menus[i]);
+            var menu = menus[i];
+            var loginLink = findLoginLikeLink(menu);
+            var sellCarLink = findSellCarLink(menu);
+
             setLinkState(loginLink, isLoggedIn);
+
+            if (sellCarLink) {
+                sellCarLink.style.display = isLoggedIn ? "" : "none";
+            }
         }
     }
 

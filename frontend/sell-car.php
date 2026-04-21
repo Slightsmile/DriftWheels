@@ -11,10 +11,10 @@
 <body>
 
     <div class="navbar">
-        <div class="logo">DriftWheels</div>
+        <a class="logo" href="index.php">DriftWheels</a>
         <div class="menu">
             <a href="index.php"><button>Home</button></a>
-            <a href="about-us.php"><button>About Us</button></a>
+            <a href="timeline.php"><button>Browse</button></a>
             <a href="sell-car.php"><button>Sell Car</button></a>
             <a href="login.php"><button>Login</button></a>
         </div>

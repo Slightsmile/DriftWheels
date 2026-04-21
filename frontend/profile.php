@@ -11,12 +11,12 @@
 <body>
 
     <div class="navbar">
-        <div class="logo">DriftWheels</div>
+        <a class="logo" href="index.php">DriftWheels</a>
         <div class="menu">
             <a href="index.php"><button>Home</button></a>
-            <a href="about-us.php"><button>About Us</button></a>
+            <a href="timeline.php"><button>Browse</button></a>
             <a href="profile.php"><button>Profile</button></a>
-            <a href="../backend/logout_redirect.php"><button>Logout</button></a>
+            <a href="../backend/logout-redirect.php"><button>Logout</button></a>
         </div>
     </div>
 

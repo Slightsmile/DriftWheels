@@ -97,7 +97,7 @@ if (phoneInput) {
 }
 
 if (profileForm) {
-    fetch('../backend/profile_get.php')
+    fetch('../backend/profile-get.php')
         .then(function (res) { return res.json(); })
         .then(function (data) {
             if (!data.ok || !data.data || !data.data.profile) {
@@ -146,7 +146,7 @@ if (profileForm) {
             formData.append('profile_image', imageInput.files[0]);
         }
 
-        fetch('../backend/profile_save.php', {
+        fetch('../backend/profile-save.php', {
             method: 'POST',
             body: formData
         })
