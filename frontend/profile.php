@@ -15,6 +15,7 @@
         <div class="menu">
             <a href="index.php"><button>Home</button></a>
             <a href="timeline.php"><button>Browse</button></a>
+            <a href="sell-car.php"><button>Sell Car</button></a>
             <a href="profile.php"><button>Profile</button></a>
             <a href="../backend/logout-redirect.php"><button>Logout</button></a>
         </div>
