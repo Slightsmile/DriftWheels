@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - DriftWheels</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+        #pendingCards .action-btn {
+          width: auto !important;
+          min-width: 120px;
+          display: inline-block;
+          margin-right: 10px;
+        }
+    .post-card::before { display: none !important; }
+  .pending-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  .pending-table th, .pending-table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+  }
+  .pending-table th {
+    background: #f4f4f4;
+  }
+  .approve-btn {
+    background: #28a745;
+    color: #fff;
+    border: none;
+    padding: 6px 12px;
+    cursor: pointer;
+  }
+  .approve-btn:disabled {
+    background: #aaa;
+    cursor: not-allowed;
+  }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <div class="logo">DriftWheels</div>
+    <div class="menu">
+      <a href="index.html"><button>Home</button></a>
+      <a href="about-us.html"><button>About Us</button></a>
+      <a href="sell-car.html"><button>Sell Car</button></a>
+      <a href="login.html"><button>Login</button></a>
+    </div>
+  </div>
+    <div class="login-container" style="max-width: 750px; margin: 40px auto; padding: 32px 24px 24px 24px; box-sizing: border-box; background: #fff; border-radius: 12px;">
+      <h1>Admin Dashboard</h1>
+      <div class="timeline-feed" id="pendingCards">
+        <div class="post-card" id="staticCard" style="display:none;">
+          <img id="staticImg" src="https://via.placeholder.com/400x250?text=No+Image" style="width:100%;max-height:220px;object-fit:cover;">
+          <div style="padding:12px 0 0 0;">
+            <div class="post-top">
+              <h2 class="post-title" id="staticTitle">Car Name</h2>
+              <div class="price" id="staticPrice">BDT 0</div>
+            </div>
+            <div class="meta" id="staticMeta"></div>
+            <div class="desc" id="staticDesc"></div>
+            <div class="meta" id="staticUser"></div>
+            <a id="staticDetails" class="action-btn" style="display:inline-block;margin-top:10px;margin-right:10px;">View Details</a>
+            <button id="staticApprove" class="action-btn" style="background:#28a745;margin-top:10px;">Approve</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  <div class="footer">© 2026 DriftWheels</div>
+  <script src="admin-dashboard.js"></script>
+  <link rel="stylesheet" href="timeline.css">
+</body>
+</html>

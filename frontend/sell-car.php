@@ -169,8 +169,12 @@
     <div class="footer">
         © 2026 DriftWheels. All rights reserved.
     </div>
+<<<<<<< HEAD:frontend/sell-car.php
     <script src="assets/js/nav-auth.js"></script>
     <script src="assets/js/sell-car.js"></script>
+=======
+    <script src="sell-car.js"></script>
+>>>>>>> 33bca730eff602bbd03bb58202a9f99632687761:sell-car.html
 
 </body>
 
