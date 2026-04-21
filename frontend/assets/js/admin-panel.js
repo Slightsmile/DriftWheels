@@ -1,24 +1,27 @@
 "use strict";
 
-var PENDING_CARS_KEY = "pendingCars";
-var APPROVED_CARS_KEY = "approvedCars";
 var ADMIN_LOGIN_KEY = "adminLoggedIn";
 var DEFAULT_IMAGE = "https://via.placeholder.com/600x400?text=No+Image";
 
-var pendingCardsElement = document.getElementById("pendingCards");
-var pendingCountElement = document.getElementById("pendingCount");
-var adminLogoutBtn = document.getElementById("adminLogoutBtn");
+var approvedCardsElement = document.getElementById("approvedCards");
+var approvedCountElement = document.getElementById("approvedCount");
 
-function readCarsFromStorage(key) {
-    try {
-        return JSON.parse(localStorage.getItem(key) || "[]");
-    } catch (error) {
-        return [];
+function resolveImagePath(path) {
+    if (!path) {
+        return DEFAULT_IMAGE;
     }
-}
 
-function writeCarsToStorage(key, value) {
-    localStorage.setItem(key, JSON.stringify(value));
+    var imagePath = String(path);
+    var hasHttp = imagePath.indexOf("http://") === 0 || imagePath.indexOf("https://") === 0;
+    var isDataUrl = imagePath.indexOf("data:") === 0;
+    var isAbsolute = imagePath.indexOf("/") === 0;
+    var alreadyRelative = imagePath.indexOf("../") === 0;
+
+    if (hasHttp || isDataUrl || isAbsolute || alreadyRelative) {
+        return imagePath;
+    }
+
+    return "../" + imagePath;
 }
 
 function buildMetaItem(label) {
@@ -35,14 +38,18 @@ function buildPostCard(car, index) {
     var image = document.createElement("img");
     image.className = "post-image";
     image.alt = "Car image";
-    image.src = car.photos && car.photos[0] ? car.photos[0] : DEFAULT_IMAGE;
+    image.src = resolveImagePath(car.photos && car.photos[0] ? car.photos[0] : "");
+
+    if (car.id) {
+        card.dataset.listingId = String(car.id);
+    }
 
     var topSection = document.createElement("div");
     topSection.className = "post-top";
 
     var title = document.createElement("h2");
     title.className = "post-title";
-    title.textContent = car.name || "Untitled";
+    title.textContent = car.name || car.car_title || "Untitled";
 
     var price = document.createElement("div");
     price.className = "price";
@@ -55,13 +62,13 @@ function buildPostCard(car, index) {
     meta.className = "meta";
 
     var chips = [
-        car.year,
-        car.condition,
+        car.year || car.model_year,
+        car.condition || car.car_condition,
         (car.mileage || "0") + " km",
-        car.fuel,
+        car.fuel || car.fuel_type,
         car.transmission,
         car.color,
-        car.location
+        car.location || car.car_location
     ];
 
     for (var i = 0; i < chips.length; i++) {
@@ -78,22 +85,22 @@ function buildPostCard(car, index) {
     footer.className = "post-footer";
 
     var postedBy = document.createElement("span");
-    postedBy.textContent = "Posted by: " + (car.user || "Unknown") + " (" + (car.phone || "No phone") + ")";
+    postedBy.textContent = "Posted by: " + (car.user || car.full_name || "Unknown") + " (" + (car.phone || car.seller_phone || "No phone") + ")";
 
     footer.appendChild(postedBy);
 
     var actionBar = document.createElement("div");
     actionBar.className = "admin-action-row";
 
-    var approveButton = document.createElement("button");
-    approveButton.type = "button";
-    approveButton.className = "admin-approve-btn";
-    approveButton.textContent = "Approve";
-    approveButton.addEventListener("click", function () {
-        approveCar(index);
+    var removeButton = document.createElement("button");
+    removeButton.type = "button";
+    removeButton.className = "admin-remove-btn";
+    removeButton.textContent = "Delete";
+    removeButton.addEventListener("click", function () {
+        removeApprovedCar(index);
     });
 
-    actionBar.appendChild(approveButton);
+    actionBar.appendChild(removeButton);
 
     card.appendChild(image);
     card.appendChild(topSection);
@@ -105,63 +112,93 @@ function buildPostCard(car, index) {
     return card;
 }
 
-function renderEmptyState() {
-    if (!pendingCardsElement) {
+function renderApprovedEmptyState() {
+    if (!approvedCardsElement) {
         return;
     }
 
-    pendingCardsElement.innerHTML = '<article class="empty-state"><p>No pending posts right now.</p><a class="empty-link" href="sell-car.php">Go to sell car page</a></article>';
+    approvedCardsElement.innerHTML = '<article class="empty-state"><p>No available listings right now.</p></article>';
 }
 
-function updatePendingCount(count) {
-    if (!pendingCountElement) {
+function updateApprovedCount(count) {
+    if (!approvedCountElement) {
         return;
     }
 
     if (count === 0) {
-        pendingCountElement.textContent = "0 pending posts";
+        approvedCountElement.textContent = "0 available posts";
         return;
     }
 
-    pendingCountElement.textContent = count + " pending post" + (count > 1 ? "s" : "");
+    approvedCountElement.textContent = count + " available post" + (count > 1 ? "s" : "");
 }
 
-function renderPendingCars() {
-    var pendingCars = readCarsFromStorage(PENDING_CARS_KEY);
-
-    updatePendingCount(pendingCars.length);
-
-    if (!pendingCardsElement) {
+function renderApprovedCars() {
+    if (!approvedCardsElement) {
         return;
     }
 
-    pendingCardsElement.innerHTML = "";
+    approvedCardsElement.innerHTML = '<article class="empty-state"><p>Loading available listings...</p></article>';
 
-    if (pendingCars.length === 0) {
-        renderEmptyState();
-        return;
-    }
+    fetch("../backend/listings.php")
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            var listings = data && data.ok && data.data && data.data.listings ? data.data.listings : [];
 
-    for (var i = 0; i < pendingCars.length; i++) {
-        pendingCardsElement.appendChild(buildPostCard(pendingCars[i], i));
-    }
+            updateApprovedCount(listings.length);
+            approvedCardsElement.innerHTML = "";
+
+            if (listings.length === 0) {
+                renderApprovedEmptyState();
+                return;
+            }
+
+            for (var i = 0; i < listings.length; i++) {
+                approvedCardsElement.appendChild(buildPostCard(listings[i], i));
+            }
+        })
+        .catch(function () {
+            updateApprovedCount(0);
+            approvedCardsElement.innerHTML = '<article class="empty-state"><p>Could not load available listings right now.</p></article>';
+        });
 }
 
-function approveCar(index) {
-    var pendingCars = readCarsFromStorage(PENDING_CARS_KEY);
-    var approvedCars = readCarsFromStorage(APPROVED_CARS_KEY);
+function removeApprovedCar(index) {
+    var approvedCards = approvedCardsElement ? approvedCardsElement.querySelectorAll(".post-card") : [];
+    var card = approvedCards[index];
+    var listingId = card && card.dataset ? card.dataset.listingId : "";
 
-    if (index < 0 || index >= pendingCars.length) {
+    if (!listingId) {
         return;
     }
 
-    approvedCars.push(pendingCars[index]);
-    pendingCars.splice(index, 1);
+    if (!window.confirm("Remove this listing from available cars?")) {
+        return;
+    }
 
-    writeCarsToStorage(APPROVED_CARS_KEY, approvedCars);
-    writeCarsToStorage(PENDING_CARS_KEY, pendingCars);
+    fetch("../backend/admin-delete-listing.php", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
+        },
+        body: "id=" + encodeURIComponent(listingId)
+    })
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            if (!data || !data.ok) {
+                alert((data && data.message) || "Could not remove listing");
+                return;
+            }
 
-    renderPendingCars();
+            renderApprovedCars();
+        })
+        .catch(function () {
+            alert("Could not remove listing");
+        });
 }
 
 function ensureAdminAccess() {
@@ -173,15 +210,6 @@ function ensureAdminAccess() {
     return true;
 }
 
-function logoutAdmin() {
-    localStorage.removeItem(ADMIN_LOGIN_KEY);
-    window.location.href = "admin.php";
-}
-
-if (adminLogoutBtn) {
-    adminLogoutBtn.addEventListener("click", logoutAdmin);
-}
-
 if (ensureAdminAccess()) {
-    renderPendingCars();
+    renderApprovedCars();
 }

@@ -29,6 +29,15 @@ body {
     text-decoration: none;
 }
 
+.logo:link,
+.logo:visited,
+.logo:hover,
+.logo:active,
+.logo:focus {
+    color: white;
+    text-decoration: none;
+}
+
 .menu {
     float: right;
 }
@@ -172,28 +181,21 @@ body {
     gap: 16px;
 }
 
-.admin-logout-btn {
-    background-color: #8b1e1e;
-    color: #fff;
-    border: none;
-    padding: 10px 16px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: 600;
-    margin-top: 6px;
-}
-
 .admin-action-row {
     display: flex;
     gap: 10px;
     margin-top: 12px;
 }
 
-.admin-approve-btn {
+.admin-section {
+    margin-top: 18px;
+}
+
+.admin-remove-btn {
     width: auto;
     min-width: 120px;
     padding: 10px 16px;
-    background-color: #28a745;
+    background-color: #8b1e1e;
     color: #fff;
     border: none;
     border-radius: 8px;
@@ -201,8 +203,8 @@ body {
     font-size: 14px;
 }
 
-.admin-approve-btn:hover {
-    background-color: #218838;
+.admin-remove-btn:hover {
+    background-color: #6f1717;
 }
 
 .form-message {
@@ -222,10 +224,6 @@ body {
 @media (max-width: 640px) {
     .admin-hero {
         flex-direction: column;
-    }
-
-    .admin-logout-btn {
-        width: 100%;
     }
 }
 

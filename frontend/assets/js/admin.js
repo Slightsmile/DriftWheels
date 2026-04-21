@@ -28,12 +28,33 @@ if (adminLoginForm) {
         var username = adminUserInput ? adminUserInput.value.trim() : "";
         var password = adminPassInput ? adminPassInput.value : "";
 
-        if (validateAdminCredentials(username, password)) {
-            localStorage.setItem("adminLoggedIn", "yes");
-            window.location.href = "admin-dashboard.php";
+        if (!validateAdminCredentials(username, password)) {
+            showAdminMessage("Invalid username or password.", true);
             return;
         }
 
-        showAdminMessage("Invalid username or password.", true);
+        var formData = new FormData();
+        formData.append("username", username);
+        formData.append("password", password);
+
+        fetch("../backend/admin-login.php", {
+            method: "POST",
+            body: formData
+        })
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+                if (!data || !data.ok) {
+                    showAdminMessage((data && data.message) || "Invalid username or password.", true);
+                    return;
+                }
+
+                localStorage.setItem("adminLoggedIn", "yes");
+                window.location.href = "admin-panel.php";
+            })
+            .catch(function () {
+                showAdminMessage("Could not log in right now.", true);
+            });
     });
 }

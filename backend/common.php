@@ -44,6 +44,23 @@ function require_login()
     return $user;
 }
 
+function current_admin()
+{
+    if (!isset($_SESSION["admin"])) {
+        return null;
+    }
+    return $_SESSION["admin"];
+}
+
+function require_admin()
+{
+    $admin = current_admin();
+    if ($admin === null) {
+        json_response(false, "Please login as admin first", null, 401);
+    }
+    return $admin;
+}
+
 function save_uploaded_image($fieldName, $folder)
 {
     if (!isset($_FILES[$fieldName])) {

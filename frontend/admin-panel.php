@@ -14,8 +14,6 @@
         <a class="logo" href="index.php">DriftWheels</a>
         <div class="menu">
             <a href="index.php"><button>Home</button></a>
-            <a href="timeline.php"><button>Browse</button></a>
-            <a href="timeline.php"><button>Timeline</button></a>
             <a href="login.php"><button>Login</button></a>
         </div>
     </div>
@@ -24,14 +22,13 @@
         <section class="timeline-hero admin-hero">
             <div>
                 <h1>Admin Dashboard</h1>
-                <p>Review pending car posts and approve them with one click.</p>
+                <p>Manage available listings. Admin can only delete listings.</p>
             </div>
-            <button id="adminLogoutBtn" class="admin-logout-btn" type="button">Logout</button>
         </section>
 
         <section class="timeline-section">
-            <div id="pendingCount" class="post-count">Loading pending posts...</div>
-            <div id="pendingCards" class="timeline-feed"></div>
+            <div id="approvedCount" class="post-count">Loading available posts...</div>
+            <div id="approvedCards" class="timeline-feed"></div>
         </section>
     </main>
 
@@ -39,6 +36,7 @@
         © 2026 DriftWheels. All rights reserved.
     </div>
 
+    <script src="assets/js/nav-auth.js"></script>
     <script src="assets/js/admin-panel.js"></script>
 </body>
 

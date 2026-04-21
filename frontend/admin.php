@@ -47,6 +47,7 @@
         © 2026 DriftWheels
     </div>
 
+    <script src="assets/js/nav-auth.js"></script>
     <script src="assets/js/admin.js"></script>
 </body>
 
